@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts (no network fetch at build time) */
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@theme inline {
+  /* Color tokens — paper-and-ink, one signal accent, used sparingly */
+  --color-paper: #ffffff;
+  --color-paper-raised: #ffffff;
+  --color-ink: #14130f;
+   --color-muted: #84807a;
+  /* --color-line: #e3e0d9; */
+  --color-signal: #3a5cf2;
+  --color-signal-dim: #3a5cf21a; 
+
+  --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-body: "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --animate-blink: blink 1.1s steps(2, start) infinite;
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+  background-attachment: fixed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #ffffff;
+    --color-paper-raised: #18170f;
+    --color-ink: #343331;
+    --color-muted: #84807a;
+    /* --color-line: #2a2820; */
+    --color-signal: #7d96ff;
+    --color-signal-dim: #7d96ff22;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.link-underline {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+.link-underline:hover {
+  text-decoration-color: var(--color-signal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

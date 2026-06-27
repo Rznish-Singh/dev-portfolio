@@ -1,0 +1,142 @@
+# Website Information Gathering
+
+Before testing a website, it is important to collect public information about it. This process is called **information gathering** or **reconnaissance**. It helps you understand the target without sending harmful requests.
+
+In this guide, you'll learn about popular online tools used during the first phase of website reconnaissance.
+
+---
+
+## Whois Lookup
+
+![Whois Lookup](https://whois.domaintools.com/favicon.ico)
+
+**Website:**  [Whois Lookup]( https://whois.domaintools.com "basic information about a domain name").
+
+A Whois lookup provides basic information about a domain name. It can show:
+
+* Domain owner (if public)
+* Domain registrar
+* Registration date
+* Expiration date
+* Name servers
+* Domain status
+
+This information helps you learn who manages the domain and how long it has been active.
+
+---
+
+## Netcraft
+
+![Netcraft](https://www.netcraft.com/favicon.ico)
+
+**Website:**  [Netcraft]( https://www.netcraft.com "identifies the technologies running behind a website").
+
+Netcraft identifies the technologies running behind a website. It can detect:
+
+* Web server
+* Operating system
+* Hosting provider
+* SSL certificate
+* CDN
+* Security headers
+
+This helps you understand the technology stack used by the target website.
+
+---
+
+## DNS Information with Robtex
+
+![Robtex](https://www.robtex.com/favicon.ico)
+
+**Website:** [Robtex](https://www.robtex.com).
+
+Robtex is a DNS analysis platform that provides detailed domain information.
+
+It can display:
+
+* A records
+* MX records
+* NS records
+* IP addresses
+* Reverse DNS
+* Network relationships
+
+DNS information helps you understand how the domain is connected to the internet.
+
+---
+
+## Discover Websites on the Same Server
+
+Several online services can identify websites hosted on the same IP address.
+
+This information helps you:
+
+* Find related websites
+* Detect shared hosting
+* Discover additional targets during reconnaissance
+
+Always verify the results because shared hosting may contain unrelated websites.
+
+---
+
+## Discover Subdomains
+
+Many websites use subdomains for different services.
+
+Common examples include:
+
+* `mail.example.com`
+* `api.example.com`
+* `dev.example.com`
+* `blog.example.com`
+
+Finding subdomains helps reveal hidden services that may not appear on the main website.
+
+---
+
+## Discover Sensitive Files
+
+Sometimes websites accidentally expose files that should not be public.
+
+Examples include:
+
+* Backup files
+* Configuration files
+* Log files
+* Database exports
+* Old documents
+
+These files may reveal useful technical information during an authorized security assessment.
+
+---
+
+## Analyze Discovered Files
+
+After finding public files, review them carefully.
+
+Look for information such as:
+
+* Software versions
+* Usernames
+* Email addresses
+* Internal directories
+* API endpoints
+* Configuration settings
+
+Understanding these details helps build a complete picture of the target environment.
+
+---
+
+## Best Practices
+
+* Collect only publicly available information.
+* Respect website policies and applicable laws.
+* Verify information using multiple sources.
+* Record your findings for future analysis.
+* Perform reconnaissance before active testing.
+
+---
+
+## Summary
+
+Website information gathering is the foundation of every security assessment. Tools such as **Whois**, **Netcraft**, and **Robtex** provide valuable public information about domains, DNS records, hosting, and technologies. Combined with subdomain discovery and file analysis, they help security professionals understand a target before performing further testing.
