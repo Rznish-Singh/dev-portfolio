@@ -2,14 +2,6 @@
 
 A personal developer portfolio built with **Next.js (App Router)**, **Tailwind CSS v4**, and **MDX** for long-form writing. Monochrome "activity log" aesthetic — paper background, monospace data labels, one signal-blue accent reserved for interactive states and the live GitHub activity cursor.
 
-## Stack
-
-- Next.js 15 (App Router, React 19)
-- Tailwind CSS v4 (CSS-variable driven theme, see `app/globals.css`)
-- MDX for `/writing` posts (native Next.js MDX support, no CMS)
-- Self-hosted fonts via `@fontsource` (Space Grotesk, Inter, JetBrains Mono) — no build-time network fetch required
-- A handful of small local UI primitives (tooltip, drawer, collapsible) instead of a big component library
-
 ## Getting started
 
 ```bash
