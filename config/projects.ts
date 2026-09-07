@@ -11,8 +11,8 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "Android Screen Mirroring Platform",
-    title: "Android Screen Mirroring Platform",
+    slug: "Android Screen Mirroring Platform ",
+    title: "Android Screen Mirroring Platform under development",
     period: { start: "06.2026" },
     link: "https://rznish.com/projects/screen-mirroring-platform",
     github: "https://github.com/Rznish-Singh",

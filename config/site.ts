@@ -4,6 +4,7 @@ import {
   GithubIcon,
   HomeIcon,
   LinkedinIcon,
+  FolderOpenDot,
   MailIcon,
   type LucideIcon,
 } from "lucide-react";
@@ -23,6 +24,7 @@ export const DockConfig: {
 } = {
   navbar: [
     { href: "/", label: "Home", icon: HomeIcon },
+    { href: "/craft", label: "Craft", icon: FolderOpenDot },
     { href: "/writing", label: "Writing", icon: BookOpenIcon },
     { href: "/#projects", label: "Projects", icon: FolderGit2Icon },
   ],
