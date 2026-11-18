@@ -12,6 +12,11 @@ import {
 export const SCROLL_AREA_ID = "scroll-area";
 export const MOBILE_SCROLL_THRESHOLD = 80;
 
+export const META_THEME_COLORS = {
+  light: "#ffffff",
+  dark: "#09090b",
+}
+
 export type NavLink = {
   href: string;
   label: string;

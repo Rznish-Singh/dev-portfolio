@@ -1,6 +1,6 @@
 export const USER = {
   name: "Rajnish Singh",
-  tagline: "Build. Learn. Ship.",
+  tagline: " I Build Stuff.",
   description:
     "I create software with modern technologies, explore AI, and continuously improve my skills by building projects from idea to deployment.",
   website: "https://rznish.com",
@@ -20,4 +20,8 @@ export const USER = {
     x: "https://x.com/your-handle",
     email: "rajnishsingh2k28@gmail.com",
   },
+  craft:{
+    craft:"/craft"
+  }
+
 };

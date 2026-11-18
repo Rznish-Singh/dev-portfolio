@@ -1,5 +1,8 @@
 import { USER } from "@/config/user";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/theme-toggle"
+ import { DiwaliToggle } from "@/components/diwali";
+
 
 export const SelfImage = () => (
   <Image
@@ -21,6 +24,10 @@ export const ProfileImage = () => {
         className="h-full w-full select-none rounded-full bg-ink ring-1 ring-line ring-offset-2 ring-offset-paper"
         alt={`Profile of ${USER.name}`}
       />
+      <div className="px-100 py-0"> <ThemeToggle /></div>
+      
+     {/* <div className="px-100 py-0"> <DiwaliToggle /> </div>  diwali toggle button */}
+
     </div>
   );
 };
