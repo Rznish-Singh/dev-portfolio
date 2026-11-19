@@ -8,7 +8,7 @@ import { MarigoldDefs } from "./Marigold";
 import MarigoldGarland from "./MarigoldGarland";
 import FairyLights from "./FairyLights";
 import HangingDecor from "./HangingDecor";
-import InteractiveDiyas from "./InteractiveDiyas";
+// import InteractiveDiyas from "./InteractiveDiyas";
 import FxCanvas from "./FxCanvas";
 
 /** Everything visual lives here. Mounted only while Diwali mode is active; unmounting removes every loop and listener. */
