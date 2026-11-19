@@ -330,29 +330,32 @@ function NotionMentionLink({
   if (!showPreview) return mention;
 
   return (
-    <HoverCard
-      openDelay={openDelay}
-      closeDelay={closeDelay}
-      onOpenChange={(nextOpen) => {
-        if (nextOpen && (prefetch === "hover" || status === "idle")) {
-          void loadMetadata();
-        }
-      }}
-    >
-      <HoverCardTrigger>{mention}</HoverCardTrigger>
-      <HoverCardContent
-        id={previewId}
-        align={align}
-        side="bottom"
-        sideOffset={8}
-        style={{ width: previewWidth }}
-        className={cn(
-          "max-w-[calc(100vw-2rem)] border-0 bg-transparent p-0 shadow-none ring-0 will-change-transform",
-          "data-[state=open]:animate-in data-[state=open]:fade-in-0  data-[state=open]:slide-in-from-top-1 data-[state=open]:duration-150",
-          "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-top-1 data-[state=closed]:duration-150",
-          previewClassName,
-        )}
-      >
+  <HoverCard
+  onOpenChange={(nextOpen) => {
+    if (nextOpen && (prefetch === "hover" || status === "idle")) {
+      void loadMetadata();
+    }
+  }}
+>
+  <HoverCardTrigger
+    delay={openDelay}
+    closeDelay={closeDelay}
+    render={mention}
+  />
+
+  <HoverCardContent
+    id={previewId}
+    align={align}
+    side="bottom"
+    sideOffset={8}
+    style={{ width: previewWidth }}
+    className={cn(
+      "max-w-[calc(100vw-2rem)] border-0 bg-transparent p-0 shadow-none ring-0 will-change-transform",
+      "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-1 data-[state=open]:duration-150",
+      "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-top-1 data-[state=closed]:duration-150",
+      previewClassName,
+    )}
+  >
         {status === "loading" || status === "idle" ? (
           <PreviewSkeleton height={previewHeight} />
         ) : (

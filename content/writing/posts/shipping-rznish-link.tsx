@@ -6,6 +6,7 @@ export const post: Post = {
   title: "Shipping rznish.link",
   date: "2025-05-23",
   summary: "Notes from building a URL shortener.",
+  new: false,
   sections: [
     {
       id: "overview",
