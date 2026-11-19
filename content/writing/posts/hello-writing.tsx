@@ -9,6 +9,7 @@ export const post: Post = {
   title: "Hello, writing",
   date: "2026-10-03",
   summary: "Why I started writing things down.",
+  new:false,
   sections: [
     {
       id: "getting-started",

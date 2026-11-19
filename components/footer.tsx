@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Info from "@/components/info";
 
 // Change this string yourself whenever you update the site.
-const LAST_UPDATED = "3 October 2026";
+const LAST_UPDATED = "19 november 2026";
 
 export function Footer({ className }: { className?: string }) {
   return (

@@ -1,12 +1,12 @@
 import { post as helloWriting } from "./posts/hello-writing";
 import { post as shippingRznishLink } from "./posts/shipping-rznish-link";
-// import { post as image-optimization } from "./posts/image-optimization";
+import { post as imageoptimization } from "./posts/image-optimization";
 
-export type { Post, PostSection } from "./types";
+export type { Post, PostSection , newpost , } from "./types";
 
 export const posts = [
-   helloWriting,
-  //  image-optimization,
+  //  helloWriting,
+  imageoptimization,
   // helloWriting,
   // helloWriting,
   // shippingRznishLink,

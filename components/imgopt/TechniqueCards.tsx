@@ -1,56 +1,53 @@
 "use client";
-import { useState } from "react";
-import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { IoTheme } from "@/components/imgopt/theme";
 
-export type T = { title: string; tag: string; desc: string; code: string };
+// No code here on purpose: each card is a plain explanation.
+export type T = { title: string; tag: string; desc: string; why: string };
 
-function TechniqueCard({ t }: { t: T }) {
-  const [ok, setOk] = useState(false);
+const TONES = ["var(--io-blue)", "var(--io-purple)", "var(--io-teal)", "var(--io-amber)", "var(--io-green)", "var(--io-pink)"];
+const tint = (c: string, pct: number) => `color-mix(in oklab, ${c} ${pct}%, transparent)`;
+
+export function TechniqueGroup({ items }: { items: T[] }) {
   return (
-    <Card size="sm" className="not-prose">
-      <CardHeader>
-        <CardTitle>{t.title}</CardTitle>
-        <CardDescription>{t.desc}</CardDescription>
-        <CardAction>
-          <Button size="sm" variant="ghost" onClick={async () => { await navigator.clipboard.writeText(t.code); setOk(true); setTimeout(() => setOk(false), 1200); }}>
-            {ok ? "✓" : "Copy"}
-          </Button>
-        </CardAction>
-      </CardHeader>
-      <CardContent>
-        <span className="mb-1 inline-block rounded bg-muted px-1.5 py-0.5 text-[10px]">{t.tag}</span>
-        <pre className="overflow-x-auto rounded-md bg-muted p-2 text-[11px] leading-relaxed">{t.code}</pre>
-      </CardContent>
-    </Card>
+    <div className="io not-prose grid gap-3 md:grid-cols-2">
+      <IoTheme />
+      {items.map((t, i) => {
+        const c = TONES[i % TONES.length];
+        return (
+          <Card key={t.title} size="sm" className="bg-[var(--io-card)] text-[var(--io-ink)] ring-[var(--io-line)]">
+            <CardHeader>
+              <CardTitle>{t.title}</CardTitle>
+              <CardDescription className="text-[var(--io-sub)]">{t.desc}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <span className="inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ background: tint(c, 14), color: c }}>{t.tag}</span>
+              <p className="rounded-lg px-2.5 py-1.5 text-xs" style={{ background: tint("var(--io-blue)", 10), border: `1px solid ${tint("var(--io-blue)", 28)}` }}>
+                <b style={{ color: "var(--io-blue)" }}>In short:</b> {t.why}
+              </p>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
   );
 }
 
-export function TechniqueGroup({ items }: { items: T[] }) {
-  return <div className="grid gap-3 md:grid-cols-2">{items.map((t) => <TechniqueCard key={t.title} t={t} />)}</div>;
-}
-
 export const FORMAT_TECH: T[] = [
-  { title: "AVIF / WebP / JPEG fallback", tag: "html", desc: "Browser takes the first format it supports.",
-    code: `<picture>\n  <source type="image/avif" srcset="a.avif">\n  <source type="image/webp" srcset="a.webp">\n  <img src="a.jpg" alt="" width="800" height="600">\n</picture>` },
-  { title: "Convert with sharp", tag: "node", desc: "Resize + encode + strip EXIF in one pipeline.",
-    code: `await sharp(input)\n  .rotate()            // fix EXIF orientation\n  .resize({ width: 800 })\n  .avif({ quality: 50 })\n  .toFile("out-800.avif");` },
+  { title: "Format plan", tag: "format", desc: "Use AVIF for photos, WebP as the fallback, JPEG or PNG when needed, and SVG for logos and icons.", why: "The browser picks the best format it supports." },
+  { title: "Sharp", tag: "tool", desc: "A tool that resizes photos, makes AVIF and WebP copies, and removes private data like location from EXIF.", why: "Run it once and every size is made for you." },
+  { title: "Image CDN", tag: "service", desc: "A service that resizes and converts images on the fly, based on the URL and the browser.", why: "No need to make every version by hand." },
 ];
 export const LOAD_TECH: T[] = [
-  { title: "Lazy loading", tag: "below the fold", desc: "Delay offscreen downloads.",
-    code: `<img src="p.webp" width="400" height="400"\n  loading="lazy" decoding="async" alt="">` },
-  { title: "LCP / hero image", tag: "above the fold", desc: "Eager + high priority. Never lazy-load it.",
-    code: `<img src="hero.avif" width="1600" height="700"\n  loading="eager" fetchpriority="high" alt="">` },
-  { title: "next/image", tag: "next.js", desc: "Resizing, formats, srcset and lazy loading built in.",
-    code: `<Image src="/p.jpg" alt="" width={800} height={600}\n  sizes="(max-width:600px) 100vw, 50vw"\n  placeholder="blur" />` },
-  { title: "Aspect-ratio box", tag: "css", desc: "Reserve space → no layout shift (CLS).",
-    code: `.box { aspect-ratio: 1/1; background:#eee }\n.box img { width:100%; height:100%; object-fit:cover }` },
+  { title: "Preload the hero", tag: "preload", desc: "Tell the browser early about the main image, especially when CSS or JavaScript hides it from the HTML.", why: "Preload only the main image, not all of them." },
+  { title: "Priority hints", tag: "fetch priority", desc: "Mark the main image high. Mark small secondary images low. Never mark everything high.", why: "If everything is important, nothing is." },
+  { title: "Lazy loading", tag: "below the fold", desc: "Images below the screen wait until the user scrolls near them. Never lazy-load the main image.", why: "The first screen loads faster." },
+  { title: "Async decoding", tag: "decoding", desc: "Downloading and decoding are two steps. Async decoding stops decoding from blocking other work on the page.", why: "It helps smoothness, not network speed." },
 ];
 export const INFRA_TECH: T[] = [
-  { title: "Immutable cache header", tag: "http", desc: "For versioned/hashed image URLs.",
-    code: `Cache-Control: public, max-age=31536000, immutable` },
-  { title: "Presigned upload (R2/S3)", tag: "node", desc: "Browser uploads straight to storage.",
-    code: `const url = await getSignedUrl(s3,\n  new PutObjectCommand({ Bucket, Key }),\n  { expiresIn: 60 });\nawait fetch(url, { method: "PUT", body: file });` },
-  { title: "Upload validation", tag: "security", desc: "Check real file type, not just the extension.",
-    code: `const meta = await sharp(buf).metadata();\nif (!["jpeg","png","webp"].includes(meta.format!)\n  || meta.width! > 8000) throw new Error("bad image");` },
+  { title: "Long cache time", tag: "http header", desc: "Tell browsers and CDNs to keep an image for a year when the URL never changes.", why: "Repeat visits need no network at all." },
+  { title: "Versioned URLs", tag: "cache", desc: "Change the file name when the image changes, like product-v2. The old cache is then never wrong.", why: "Long caching without stale images." },
+  { title: "Preconnect", tag: "network", desc: "Open the connection to your image CDN early if it is on another domain and needed right away.", why: "Do not preconnect to every domain." },
+  { title: "Presigned upload", tag: "upload", desc: "Your backend gives a temporary link and the user's image goes straight to S3/R2.", why: "Your server skips the heavy work." },
+  { title: "Upload validation", tag: "security", desc: "Check the real file type, not just the name. Also limit the file size and dimensions.", why: "Protects you from fake or huge files." },
 ];

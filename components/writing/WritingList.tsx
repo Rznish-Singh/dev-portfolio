@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { groupByYear, formatShort } from "@/lib/writing";
 import { cn } from "@/lib/utils";
+import { NewBadge } from "@/components/ui/NewBadge";
 
 export function WritingList({
   limit,
@@ -56,7 +57,11 @@ export function WritingList({
                     bordered ? "py-3" : "py-2",
                   )}
                 >
-                  <span className="min-w-0 text-ink">{post.title}</span>
+                  {/* the badge sits inside the title span so it stays attached to the title */}
+                  <span className="min-w-0 text-ink">
+                    {post.title}
+                    {post.new && <NewBadge force />}
+                  </span>
                   <span className="shrink-0 tabular-nums text-muted">
                     {formatShort(post.date)}
                   </span>
