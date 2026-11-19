@@ -107,9 +107,11 @@ export default function Page() {
                   >
                     Craft
                   </a>
-                  <img
-                      src="/assets/fire.gif"
-                      alt=""
+                  <video
+                      src="/assets/Fire.webm"
+                      autoPlay
+                      loop
+                      muted
                       className="h-8 w-10 rotate-0" 
                     />
                   </div>
