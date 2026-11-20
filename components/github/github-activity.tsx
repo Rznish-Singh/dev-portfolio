@@ -13,7 +13,8 @@ const TICK_MS = 1_000;  // keeps the chart moving
 const WINDOWS = [
   
     { label: "1m", secs: 1  * 60 },
-    { label: "2d", secs: 2  * DAY },
+    {label: "1d" , secs: 1* DAY},
+    
     { label: "7d", secs: 7 * DAY },
   { label: "30d", secs: 30 * DAY },
   // { label: "5m", secs: 5 * 60 },  
