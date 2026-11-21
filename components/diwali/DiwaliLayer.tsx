@@ -26,12 +26,12 @@ export default function DiwaliLayer() {
 
   return createPortal(
     <>
-      <MarigoldDefs />
+      {/* <MarigoldDefs /> */}
       <div aria-hidden="true" className="dw-sky" />
       <FxCanvas />
-      <MarigoldGarland />
+      {/* <MarigoldGarland />
       <FairyLights />
-      <HangingDecor />
+      <HangingDecor /> */}
 
       {/* <div className="dw-greet-wrap">
         <div className={`dw-greet-in text-center transition-opacity duration-1000 ${greet ? "opacity-100" : "opacity-0"}`} role="status">
